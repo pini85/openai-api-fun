@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application</title>
+    <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>OpenAI API In Action</h1>
+        <div class="wrapper"><button id="generateBtn">Create an unusual sport that involves the use of everyday household items.</button> 
+            <div class="options-wrapper">
+            <span>stream</span><input type="checkbox" id="stream" name="stream" value="stream">
+           <span>reptitive words</span> <input type="checkbox" id="words" name="words" value="words">
+           </div>
+            </div>
+           
+        <p id="generateOutput"></p>
+        <div id="streamOutput"></div>
+        <div id="repetitiveWords"></div>
+
+        <div class="chat">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button id="chatBtn">Send</button>
+           <div id="spinner-text" class="spinner-wrapper">
+                <div class="cube-wrapper">
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                </div>
+            </div>
+
+         
+          
+            <div id="chatOutput"></div>
+            <div id="summaryOutput"></div>
+        </div>
+        <div>
+            <h3 style="margin:20px">Audio Fun</h2>
+        <div><button id="start">Start Recording</button>
+        <button id="stop">Stop Recording</button></div>
+        <input type="checkbox" id="translate">Translate audio</input>
+        <div id="spinner-audio" class="spinner-wrapper">
+            <div class="cube-wrapper">
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+                <div class="cube"></div>
+            </div>
+        </div>
+       
+        
+        <p id="transcription"></p>
+        </div>
+        <div style="display: flex; justify-content:space-between;">
+        <textarea style="flex:1" id="textInput" placeholder="Enter text here"></textarea>
+    <select id="voiceSelect">
+        <option value="alloy">Alloy</option>
+        <option value="echo">Echo</option>
+        <option value="fable">Fable</option>
+        <option value="onyx">Onyx</option>
+        <option value="nova">Nova</option>
+        <option value="shimmer">Shimmer</option>
+    </select>
+
+        <button id="submitBtn">Generate Speech</button>
+        <audio id="audioPlayer" controls></audio>
+        </div>
+      
+
+        <h3 style="margin:20px">Fun with images</h3>
+    <div id="spinner-image" class="spinner-wrapper">
+        <div class="cube-wrapper">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+        </div>
+    </div>
+
+       
+        <form id="upload-form">
+            <input type="text" id="question-input" placeholder="Ask a question about the image">
+            <input type="file" id="image-input" accept="image/*">
+            <input type="text" id="image-url" placeholder="place image url">
+            <button type="submit" id="submit-btn" >Analyze Image</button>
+        </form>
+        <div style="margin: 100px;" id="result"></div>
+        <div style="display: flex; justify-content: center;"><img id="image-preview" style="width: 500px; height: 500px; display: none;" />
+        </div>
+      
+       
+              
+     
+    
+    </div>
+    <div id="spinner" class="spinner-wrapper">
+        <div class="cube-wrapper">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+        </div>
+       
+    </div>
+   
+
+    <script src="index.js"></script>
+</body>
+
+</html>
