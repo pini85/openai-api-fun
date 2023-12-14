@@ -39,14 +39,13 @@ app.post("/generate-text", async (req, res) => {
       model: "gpt-3.5-turbo-instruct",
       prompt: prompt,
       max_tokens: 500,
-      temperature: 1,
+      // temperature: 1,
       // stop: ":",
       // presence_penalty: 2,
-      seed: 42,
+      // seed: 42,
       // n: 2,
     });
 
-    console.log(completion);
     const text = completion.choices[0].text;
     res.send(text);
   } catch (error) {
@@ -66,7 +65,6 @@ app.post("/generate-stream-text", async (req, res) => {
       ],
       stream: true,
     });
-    console.log(stream);
 
     res.header("Content-Type", "text/plain");
     for await (const chunk of stream) {
@@ -75,7 +73,6 @@ app.post("/generate-stream-text", async (req, res) => {
     }
     res.end();
   } catch (e) {
-    console.error(e);
     res.status(500).send("Error generating stream text");
   }
 });
@@ -97,7 +94,6 @@ app.post("/chat", async (req, res) => {
 
   try {
     conversation.push({ role: "user", content: userInput });
-    console.log({ conversation });
 
     const openai = getOpenAiInstance();
     const response = await openai.chat.completions.create({
@@ -106,7 +102,6 @@ app.post("/chat", async (req, res) => {
       max_tokens: 250,
     });
     const assistantResponse = response.choices[0].message;
-    console.log(assistantResponse);
 
     conversation.push(assistantResponse);
     return res.send(assistantResponse.content);
@@ -167,7 +162,7 @@ app.get("/generate-json", async (req, res) => {
     seed: 50,
     response_format: { type: "json_object" },
   });
-  console.log(completion);
+
   const result = completion.choices[0].message.content;
   res.send(result);
 });
@@ -179,7 +174,7 @@ app.get("/chat-analysis", async (req, res) => {
 
   try {
     const bookingDetails = await functionCalling();
-    console.log({ bookingDetails });
+
     if (bookingDetails) {
       const result = await bookFlight(bookingDetails);
       res.json(result);
@@ -204,7 +199,6 @@ app.post("/audio-fun", upload.single("audio"), async (req, res) => {
       });
       return res.json(translation.text);
     } else {
-      console.log("transcripts");
       const transcription = await openai.audio.transcriptions.create({
         model: "whisper-1",
         file: await toFile(buffer, convertedFilePath),
@@ -212,7 +206,6 @@ app.post("/audio-fun", upload.single("audio"), async (req, res) => {
       return res.json(transcription.text);
     }
   } catch (error) {
-    console.error("Error:", error);
     res.status(500).send("Error in processing audio.");
   }
 });
@@ -237,7 +230,6 @@ app.post("/generate-speech", async (req, res) => {
 
     res.download(speechFile);
   } catch (error) {
-    console.error("Error:", error);
     res.status(500).send("Error in generating speech.");
   }
 });
@@ -272,9 +264,7 @@ app.post("/analyze-image", upload.single("image"), async (req, res) => {
     });
 
     res.json(response.choices[0].message.content);
-  } catch (e) {
-    console.log(e.message);
-  }
+  } catch (e) {}
 });
 
 app.listen(port, () => {});

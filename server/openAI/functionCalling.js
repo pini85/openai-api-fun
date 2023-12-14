@@ -81,7 +81,6 @@ const functionCalling = async () => {
     });
 
     const message = response.choices[0].message;
-    console.log({ message });
 
     if (message.function_call && message.function_call.name === "bookFlight") {
       const bookingDetails = JSON.parse(message.function_call.arguments);
